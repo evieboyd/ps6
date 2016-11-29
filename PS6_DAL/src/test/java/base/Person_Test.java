@@ -50,6 +50,14 @@ public class Person_Test {
 		person1.setPostalCode(21921);
 		
 	}
+	@AfterClass
+	public static void tearDown() throws Exception{
+		
+		Date person1Birth = null;
+		SimpleDateFormat dateFormat = null;
+		PersonDomainModel person1 = null;
+		
+	}
 	@Test
 	public void testaddPerson(){
 		PersonDomainModel personadded = PersonDAL.addPerson(person1);
