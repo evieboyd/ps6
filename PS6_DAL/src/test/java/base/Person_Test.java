@@ -37,8 +37,7 @@ public class Person_Test {
 		try {
 			person1Birth = dateFormat.parse("1994-11-27");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Wrong date format, bucko!");
 		}
 		
 		person1.setPersonID(person1UUID);
@@ -53,10 +52,29 @@ public class Person_Test {
 	}
 	@Test
 	public void testaddPerson(){
-		
+		PersonDomainModel personadded = PersonDAL.addPerson(person1);
+		assertEquals(person1, personadded);
 	}
 	
-	
+	@Test
+	public void testdeletePerson(){
+		PersonDomainModel person2 = new PersonDomainModel();
+		UUID person2UUID = UUID.randomUUID();
+		person2.setPersonID(person2UUID);
+		PersonDAL.addPerson(person2);
+		PersonDAL.deletePerson(person2UUID);
+		assertNull(person2);
+	}
+	@Test
+	public void testupdatePerson(){
+		PersonDomainModel person2 = new PersonDomainModel();
+		assertEquals(person2, PersonDAL.updatePerson(person2));
+	}
+	@Test
+	public void testgetPerson(){
+
+		assertNotEquals(person1, PersonDAL.getPerson(person1UUID));
+	}
 	
 
 }
